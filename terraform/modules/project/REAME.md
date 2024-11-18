@@ -1,0 +1,1 @@
+This is the general project definition we can reuse for prod/alpha/gamma stages.

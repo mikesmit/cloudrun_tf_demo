@@ -1,0 +1,11 @@
+# gcloud build submit will fail on a sucessful run unless you disable cloud logging with the role permissions we have
+# the only way to turn that off is a build file like this one.
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  script: |
+    docker build -t $REPO_FULL_NAME/cloudrundemo-image:$SHORT_SHA .
+  automapSubstitutions: true
+images:
+- '$REPO_FULL_NAME/cloudrundemo-image:$SHORT_SHA'
+options:
+  logging: CLOUD_LOGGING_ONLY

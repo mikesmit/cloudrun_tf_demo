@@ -1,0 +1,26 @@
+{
+  "name": "cloudrun_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Demonstration of using a cloudrun service to call a cloudrun action that executes puppeteer deployed with cloudrun actions and terraform",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.14.0",
+    "@google-cloud/tasks": "^5.5.1",
+    "express": "^4.21.1",
+    "puppeteer": "^23.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,1 @@
+Automatically creates a backend.tf (if one does not exist) that configures terraform to store state in the specified bucket at the specified path.

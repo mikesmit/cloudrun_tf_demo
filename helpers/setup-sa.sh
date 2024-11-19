@@ -134,15 +134,20 @@ SA_ID="${SA_NAME}@${SEED_PROJECT}.iam.gserviceaccount.com"
 STAGING_DIR="${PWD}"
 KEY_FILE="${STAGING_DIR}/credentials.json"
 
-echo "Creating Seed Service Account named $SA_ID..."
-gcloud iam service-accounts \
-  --project "${SEED_PROJECT}" create "${SA_NAME}" \
-  --display-name "${SA_NAME}"
+if [ -z "${n}" ]; then
+    echo "Creating Seed Service Account named $SA_ID..."
+    gcloud iam service-accounts \
+      --project "${SEED_PROJECT}" create "${SA_NAME}" \
+      --display-name "${SA_NAME}"
+else
+    echo "Skipping creation of Seed Service Account named $SA_ID..."
+fi
 
-echo "Downloading key to credentials.json..."
-gcloud iam service-accounts keys create "${KEY_FILE}" \
-  --iam-account "${SA_ID}" \
-  --user-output-enabled false
+echo "Skipping the key credentials thing..."
+#echo "Downloading key to credentials.json..."
+#gcloud iam service-accounts keys create "${KEY_FILE}" \
+#  --iam-account "${SA_ID}" \
+#  --user-output-enabled false
 
 if [[ $FOLDER_ID == "" ]]; then
   echo "Skipping grant roles on project folder... (parameter not passed)"
@@ -246,6 +251,10 @@ gcloud services enable \
 
 gcloud services enable \
   appengine.googleapis.com \
+  --project "${SEED_PROJECT}"
+
+gcloud services enable \
+  iamcredentials.googleapis.com
   --project "${SEED_PROJECT}"
 
 # enable the billing account
